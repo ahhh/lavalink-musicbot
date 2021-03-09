@@ -3,7 +3,7 @@ const util = require("../util");
 
 module.exports = {
     name: "xkcd",
-    aliases: ["x"],
+    aliases: ["x","comic1"],
     exec: async (msg, args) => {
         try {
             const num = randomNumber(1,2433);
