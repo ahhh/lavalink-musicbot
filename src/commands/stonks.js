@@ -16,12 +16,16 @@ module.exports = {
 
         try {
             const res = await getInfo(query);
+	    const priceChange = res.change;
+            var graphEmoji = `:chart_with_downwards_trend:`;
+            if (priceChange >= 0) graphEmoji = `:chart_with_upwards_trend:`;
+
             const embed = util.embed()
-			    .setAuthor(res.companyName)
-                .setTitle(res.latestPrice)
-                .setDescription(JSON.stringify(res))
+                .setAuthor(res.symbol + " - " + res.companyName)
+                .setTitle("$" + res.latestPrice + " - " + graphEmoji)
+                .setURL("https://finance.yahoo.com/quote/" + res.symbol + "/")
 				
-			await msg.channel.send(embed);
+		await msg.channel.send(embed);
 				
         } catch (e) {
             if (e.message === "Sorry I couldn't find data on that") msg.channel.send(util.embed().setDescription(`❌ | ${e.message}`));
