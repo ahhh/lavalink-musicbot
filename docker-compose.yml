@@ -1,7 +1,7 @@
 # This needs to be updated, preferably with the rest of the bot in a docker container instead of the ramiel bot, and can probably remove watchtower as well
 version: "3"
 services:
-  ramiel-server:
+  lavalink-server:
     container_name: lavalink
     image: fredboat/lavalink:dev-
     restart: on-failure:3
@@ -13,17 +13,6 @@ services:
 st.
     # Change -Xmx to your prefered size. E.g: -Xmx2G for 2GB memory allocated.
     entrypoint: java -Xmx512m -jar Lavalink.jar
-  ramiel-client:
-    container_name: ramiel
-    image: gazmull/ramiel-bot
-    build: .
-    restart: on-failure:3
-    environment:
-      NODE_ENV: production
-    network_mode: host
-    volumes: 
-      - ./auth.js:/ramiel-client/auth.js
-      - ./logs:/ramiel-client/logs
   # Put the server below in comments if you don't want to receive updates from the base image
   watchtower:
     image: v2tec/watchtower
