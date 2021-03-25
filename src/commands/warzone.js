@@ -25,7 +25,7 @@ module.exports = {
 
             const embed = util.embed()
                 .setTitle(user)
-				.setURL(`https://cod.tracker.gg/warzone/profile/${encodeURIComponent(platform)}/${encodeURIComponent(user)}/overview`)
+		.setURL(`https://cod.tracker.gg/warzone/profile/${encodeURIComponent(platform)}/${encodeURIComponent(user)}/overview`)
                 .setDescription(splittedRes[0])
                 .setFooter(`Page 1 of ${splittedRes.length}.`);
 
