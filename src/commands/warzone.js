@@ -1,27 +1,31 @@
-const fetch = require("./fetch.js");
+const fetch = require("../fetch.js");
 const util = require("../util");
 
-const getDeets = async (query) => {
-    const body = await (await fetch(`https://api.tracker.gg/api/v1/warzone/matches/psn/${encodeURIComponent(query)}?type=wz&next=null`)).json();
+const getDeets = async (platform, user) => {
+	console.log("test");
+    const body = await (await fetch(`https://api.tracker.gg/api/v1/warzone/matches/${encodeURIComponent(platform)}/${encodeURIComponent(user)}?type=wz&next=null`)).json();
 	if (body.error) throw Error(body.error);
     return body;
 };
 
 module.exports = {
-    name: "pswarzone",
-    aliases: ["pswz"],
+    name: "warzone",
+    aliases: ["wz"],
     exec: async (msg, args) => {
-        const query = args.join(" ");
-        if (!query) return msg.channel.send(util.embed().setDescription("❌ | Missing args."));
+        const platform = args[0];
+		const user = args[1];
+        if (!platform) return msg.channel.send(util.embed().setDescription("❌ | Missing args (platform, user)."));
+		if (!user) return msg.channel.send(util.embed().setDescription("❌ | Missing args (platform, user)."));
+
 
         try {
-            const res = await getDeets(query);
+            const res = await getDeets(platform, user);
 			console.log(res.data.matches[0].segments[0].stats);
             const splittedRes = util.chunk(JSON.stringify(res.data.matches[0].segments[0].stats), 1024);
 
             const embed = util.embed()
-                .setTitle(query)
-		.setURL(`https://cod.tracker.gg/warzone/profile/psn/${encodeURIComponent(query)}/overview`)
+                .setTitle(user)
+				.setURL(`https://cod.tracker.gg/warzone/profile/${encodeURIComponent(platform)}/${encodeURIComponent(user)}/overview`)
                 .setDescription(splittedRes[0])
                 .setFooter(`Page 1 of ${splittedRes.length}.`);
 
