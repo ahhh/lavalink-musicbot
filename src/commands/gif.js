@@ -9,7 +9,7 @@ const getDeets = async (searchin) => {
 
 module.exports = {
     name: "gif",
-    aliases: ["meme", "memes"],
+    aliases: ["gf", "gifs"],
     exec: async (msg, args) => {
 	const searchin = args.join(" ");
         if (!searchin) return msg.channel.send(util.embed().setDescription("❌ | Missing args (search)."));
