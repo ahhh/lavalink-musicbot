@@ -11,12 +11,12 @@ module.exports = {
     name: "gif",
     aliases: ["meme", "memes"],
     exec: async (msg, args) => {
-      const searchin = args[0];
-      if (!searchin) return msg.channel.send(util.embed().setDescription("❌ | Missing args (search)."));
-      try {
-        const res = await getDeets(searchin);
-			  const myimg = res.gfycats[0].max2mbGif
-			  await msg.channel.send(myimg);
+	const searchin = args.join(" ");
+        if (!searchin) return msg.channel.send(util.embed().setDescription("❌ | Missing args (search)."));
+        try {
+            const res = await getDeets(searchin);
+	    const myimg = res.gfycats[0].max2mbGif
+	    await msg.channel.send(myimg);
         } catch (e) {
             msg.channel.send(`An error occured: ${e.message}.`);   
         }
