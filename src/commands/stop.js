@@ -1,9 +1,11 @@
 const util = require("../util");
+var path = require("path");
 
 module.exports = {
     name: "stop",
     aliases: ["leave", "dc"],
     exec: async (msg) => {
+        console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename));
         const { music } = msg.guild;
         if (!music.player) return msg.channel.send(util.embed().setDescription("❌ | Currently not playing anything."));
         if (!msg.member.voice.channel)
