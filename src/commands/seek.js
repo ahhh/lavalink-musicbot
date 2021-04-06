@@ -1,10 +1,12 @@
 const util = require("../util");
+var path = require("path");
 
 const durationPattern = /^[0-5]?[0-9](:[0-5][0-9]){1,2}$/;
 
 module.exports = {
     name: "seek",
     exec: async (msg, args) => {
+        console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         const { music } = msg.guild;
         if (!music.player || !music.player.playing) return msg.channel.send(util.embed().setDescription("❌ | Currently not playing anything."));
         if (!msg.member.voice.channel)
