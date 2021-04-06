@@ -1,9 +1,11 @@
 const prettyMs = require("pretty-ms");
 const util = require("../util");
+var path = require("path");
 
 module.exports = {
     name: "stats",
     exec: (msg) => {
+        console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename));
         /** @type {import("lavacord").LavalinkNode[]} */
         const nodes = [...msg.client.manager.nodes.values()];
 
