@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
 var dateFormat = require("dateformat");
 const util = require("../util");
+var path = require("path");
 
 const FIRST_DILBERT = new Date(1989, 03, 17);
 
@@ -9,6 +10,7 @@ module.exports = {
     aliases: ["dil","comic5"],
     exec: async (msg, args) => {
         try {
+	    console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
             const date0 = randomDate(1,2433);
             const embed = "https://dilbert.com/strip/"+date0+"/"
 			await msg.channel.send(embed);
