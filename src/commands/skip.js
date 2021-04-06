@@ -1,9 +1,11 @@
 const util = require("../util");
+var path = require("path");
 
 module.exports = {
     name: "skip",
     aliases: ["skipto"],
     exec: async (msg, args) => {
+        console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         const { music } = msg.guild;
         const skipTo = args[0] ? parseInt(args[0], 10) : null;
         if (!music.player || !music.player.playing) return msg.channel.send(util.embed().setDescription("❌ | Currently not playing anything."));
