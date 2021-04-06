@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 const util = require("../util");
+var path = require("path");
 
 const getInfo = async (query) => {
     const body = await (await fetch(`https://api.blockchain.com/v3/exchange/tickers/${encodeURIComponent(query)}-USD`)).json();
@@ -11,6 +12,7 @@ module.exports = {
     name: "coin",
     aliases: ["cd"],
     exec: async (msg, args) => {
+	console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         const query = args.join(" ");
         if (!query) return msg.channel.send(util.embed().setDescription("❌ | Missing args."));
 
