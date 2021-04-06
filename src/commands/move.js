@@ -1,9 +1,11 @@
 const util = require("../util");
+var path = require("path");
 
 module.exports = {
     name: "move",
     aliases: ["mv"],
     exec: async (msg, args) => {
+		console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         const { music } = msg.guild;
         const from = args[0] ? parseInt(args[0], 10) : null;
         const to = args[1] ? parseInt(args[1], 10) : null;
