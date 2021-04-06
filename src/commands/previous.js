@@ -1,5 +1,5 @@
 const util = require("../util");
-var path = requiore("path");
+var path = require("path");
 
 module.exports = {
     name: "previous",
