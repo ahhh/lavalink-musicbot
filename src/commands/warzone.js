@@ -1,5 +1,6 @@
 const fetch = require("../fetch.js");
 const util = require("../util");
+var path = require("path");
 
 const getDeets = async (platform, user) => {
     const body = await (await fetch(`https://api.tracker.gg/api/v1/warzone/matches/${encodeURIComponent(platform)}/${encodeURIComponent(user)}?type=wz&next=null`)).json();
@@ -11,12 +12,11 @@ module.exports = {
     name: "warzone",
     aliases: ["wz"],
     exec: async (msg, args) => {
+	console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         const platform = args[0];
-		const user = args[1];
+	const user = args[1];
         if (!platform) return msg.channel.send(util.embed().setDescription("❌ | Missing args (platform, user)."));
-		if (!user) return msg.channel.send(util.embed().setDescription("❌ | Missing args (platform, user)."));
-
-
+	if (!user) return msg.channel.send(util.embed().setDescription("❌ | Missing args (platform, user)."));
         try {
             const res = await getDeets(platform, user);
 			const matches = res.data.matches
