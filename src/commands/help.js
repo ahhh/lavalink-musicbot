@@ -7,7 +7,7 @@ module.exports = {
     name: "help",
     aliases: ["commands", "?"],
     exec: (msg) => {
-        console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
+        console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename));
         const commands = msg.client.commands
             .filter(c => !unlisted.includes(c.name))
             .map(c => `\`${c.name}\``);
