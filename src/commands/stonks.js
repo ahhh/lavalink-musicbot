@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 const util = require("../util");
+var path = require("path");
 
 const getInfo = async (query) => {
     const body = await (await fetch(`https://cloud.iexapis.com/stable/stock/${encodeURIComponent(query)}/quote?token=pk_63464c8c53fc49f499982cc3a6469491`)).json();
@@ -11,6 +12,7 @@ module.exports = {
     name: "stock",
     aliases: ["stonks"],
     exec: async (msg, args) => {
+	console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         const query = args.join(" ");
         if (!query) return msg.channel.send(util.embed().setDescription("❌ | Missing args."));
 
