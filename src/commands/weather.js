@@ -21,7 +21,7 @@ module.exports = {
 
             const embed = util.embed()
                 .setTitle(query)
-				.setAuthor(res.list[0].main.temp)
+		.setAuthor(res.list[0].main.temp)
                 .setDescription(splittedWe[0])
                 .setFooter(`Page 1 of ${splittedWe.length}.`);
 
