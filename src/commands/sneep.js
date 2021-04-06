@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 const util = require("../util");
+var path = require("path");
 
 var popArray = [
     'https://i.imgur.com/ZwdXVRv.gif',
@@ -13,10 +14,10 @@ module.exports = {
     aliases: ["sneepsneep","poppop"],
     exec: async (msg, args) => {
         try {
-			var randomNumber = Math.floor(Math.random()*popArray.length);
-            const embed = popArray[randomNumber];
-			await msg.channel.send(embed);
-				
+		console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
+		var randomNumber = Math.floor(Math.random()*popArray.length);
+         	const embed = popArray[randomNumber];
+		await msg.channel.send(embed);		
         } catch (e) {
             msg.channel.send(`An error occured: ${e.message}.`);   
         }
