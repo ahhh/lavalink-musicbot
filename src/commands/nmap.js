@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
 const util = require("../util");
 var spawn = require('child_process').spawn
+var path = require("path");
 
 const getScan = (query) => {
   return new Promise((resolve, reject) => {
@@ -19,6 +20,7 @@ module.exports = {
     name: "nmap",
     aliases: ["nscan"],
     exec: async (msg, args) => {
+   			console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         const query = args.join(" ");
         if (!query) return msg.channel.send(util.embed().setDescription("❌ | Missing args."));
 
