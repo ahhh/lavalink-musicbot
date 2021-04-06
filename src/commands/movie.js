@@ -1,6 +1,7 @@
 const fetch = require("../fetch.js");
 const util = require("../util");
 const zlib = require('zlib');
+var path = require("path");
 
 
 module.exports = {
@@ -9,6 +10,7 @@ module.exports = {
     exec: async (msg, args) => {
 
 		try {
+			console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
 			const query = args.join(" ");
 			const search = await (await fetch(`https://www.rottentomatoes.com/api/private/v2.0/search/?limit=10&q=${encodeURIComponent(query)}`)).json();
 			if (!search.movies.length) return msg.say('Could not find any results.');
