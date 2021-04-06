@@ -1,9 +1,11 @@
 const util = require("../util");
+var path = requiore("path");
 
 module.exports = {
     name: "previous",
     aliases: ["prev"],
     exec: async (msg) => {
+        console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename));
         const { music } = msg.guild;
         if (!music.player) return msg.channel.send(util.embed().setDescription("❌ | Currently not playing anything."));
         if (!music.previous) return msg.channel.send(util.embed().setDescription("❌ | No previous track."));
