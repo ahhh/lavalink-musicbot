@@ -1,8 +1,10 @@
 const util = require("../util");
+var path = require("path");
 
 module.exports = {
     name: "search",
     exec: async (msg, args) => {
+        console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         const { music } = msg.guild;
         if (!msg.member.voice.channel)
             return msg.channel.send(util.embed().setDescription("❌ | You must be on a voice channel."));
