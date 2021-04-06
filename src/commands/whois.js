@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 const util = require("../util");
+var path = require("path");
 
 const getDeets = async (query) => {
     const body = await (await fetch(`http://api.whoxy.com/?key=e9ddbbd683d80d4xp03bcd61620bf20e&whois=${encodeURIComponent(query)}`)).json();
@@ -11,6 +12,7 @@ module.exports = {
     name: "whois",
     aliases: ["who"],
     exec: async (msg, args) => {
+        console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         const query = args.join(" ");
         if (!query) return msg.channel.send(util.embed().setDescription("❌ | Missing args."));
 
