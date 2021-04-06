@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 const util = require("../util");
+var path = require("path");
 
 const getDeets = async (query) => {
     const body = await (await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(query)}&APPID=da13201d36831242cbc1d64dc1fa4c04&units=imperial&cnt=3`)).json();
@@ -11,6 +12,7 @@ module.exports = {
     name: "weather",
     aliases: ["temp"],
     exec: async (msg, args) => {
+	console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         const query = args.join(" ");
         if (!query) return msg.channel.send(util.embed().setDescription("❌ | Missing args."));
         try {
