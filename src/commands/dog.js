@@ -10,7 +10,7 @@ const getInfo = async () => {
 
 module.exports = {
     name: "dog",
-    aliases: ["woof"],
+    aliases: ["woof", "doggy"],
     exec: async (msg, args) => {
 	console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         try {
