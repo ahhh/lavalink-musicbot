@@ -1,7 +1,7 @@
-# This template is for source building, to get the pre-built template, see https://gist.github.com/gazmull/1d13c735c86de2598c701968afbc6bcd
+# This template is for source building docker containers
 version: "3"
 services:
-  ramiel-server:
+  lavalink-server:
     container_name: lavalink
     image: fredboat/lavalink:dev-
     restart: on-failure:3
