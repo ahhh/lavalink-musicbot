@@ -13,7 +13,7 @@ module.exports = {
 			console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
 			const query = args.join(" ");
 			const search = await (await fetch(`https://www.rottentomatoes.com/api/private/v2.0/search/?limit=10&q=${encodeURIComponent(query)}`)).json();
-			if (!search.movies.length) return msg.say('Could not find any results.');
+			if (!search.movies.length) return msg.reply('Could not find any results.');
 			const find = search.movies.find(m => m.name.toLowerCase() === query.toLowerCase()) || search.movies[0];
 			const urlID = find.url.replace('/m/', '');
 			const body = await (await fetch(`https://www.rottentomatoes.com/api/private/v1.0/movies/${urlID}`)).json();
