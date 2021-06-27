@@ -21,15 +21,18 @@ module.exports = {
     exec: async (msg, args) => {
 	console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
         try {
-			    var input = args[0].split("d");
-          var res = rollDice(input[0], input[1]);
-			    var total = res.reduce((a, b) => a + b);
-          const embed = total + '\n' + res.toString();
-		      await msg.channel.send(embed);
+	      var input = args[0].split("d");
+	      var embed = "error";
+	      if (input[0] > 1000) { embed = "amount of dice is too large" } else {
+                var res = rollDice(input[0], input[1]);
+		var total = res.reduce((a, b) => a + b);
+                embed = total + '\n' + res.toString();
+	      }
+	      await msg.channel.send(embed);
 				
         } catch (e) {
-          if (e.message === "Sorry I couldn't find data on that") msg.channel.send(util.embed().setDescription(`❌ | ${e.message}`));
-          else msg.channel.send(`An error occured: ${e.message}.`);   
+            if (e.message === "Sorry I couldn't find data on that") msg.channel.send(util.embed().setDescription(`❌ | ${e.message}`));
+            else msg.channel.send(`An error occured: ${e.message}.`);   
         }
     }
 };
