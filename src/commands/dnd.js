@@ -173,6 +173,22 @@ module.exports = {
         {name: "\u200B", value: "[Check out the sorcerer's spell list here!](http://dnd5e.wikidot.com/spells:sorcerer)", inline: false}
     )
 
+    const artificerEmbed = util.embed()
+    .setColor("ORANGE")
+    .setTitle("Artificer")
+    .setURL("http://dnd5e.wikidot.com/artificer")
+    .setDescription("Masters of invention, artificers use ingenuity and magic to unlock extraordinary capabilities in objects. They see magic as a complex system waiting to be decoded and then harnessed in their spells and inventions.")
+    .setThumbnail("https://i.imgur.com/JYahKtA.jpg")
+    .addFields(
+        {name: "Hit Die", value: "d8"},
+        {name: "Primary Ability", value: "Intelligence"},
+        {name: "Saving Throws", value: "Constitution & Intelligence"},
+        {name: "Armor", value: "Light armor, medium armor, shields", inline: true},
+        {name: "Weapons", value: "Simple weapons", inline: true},
+        {name: "Tools", value: "Thieves’ tools, tinker’s tools, one type of artisan’s tools of your choice", inline: true},
+        {name: "\u200B", value: "[Check out the artificer's spell list here!](http://dnd5e.wikidot.com/spells:artificer)", inline: false}
+    )
+
     const warlEmbed = util.embed()
     .setColor("PURPLE")
     .setTitle("Warlock")
@@ -230,6 +246,8 @@ module.exports = {
             await msg.channel.send(warlEmbed);
         } else if (args == "wizard") {
             await msg.channel.send(wizaEmbed);
+        } else if (args == "artificer") {
+            await msg.channel.send(artificerEmbed);
         } else if (args == "exhaustion" || args == "exhausted") {
             await msg.channel.send(exaustEmbed);
         } else {
