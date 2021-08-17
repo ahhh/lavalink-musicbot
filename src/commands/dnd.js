@@ -240,12 +240,29 @@ module.exports = {
             const $ = cheerio.load(html);
             const bodyTag = $('#page-content').first().html();
             const markdown = turndownService.turndown(bodyTag);
-            const spellEmbed = util.embed()
-            .setColor("PURPLE")
-            .setTitle(combo)
-            .setURL(spellURL)
-            .setDescription(markdown)
-            await msg.channel.send(spellEmbed);
+            console.log(markdown.includes("you want to access does not exist."))
+            if (markdown.includes("you want to access does not exist.") == true)
+            {
+                const itemURL = `${embed}/wondrous-items:${combo}`
+                const res2 = await fetch(itemURL);
+                const html2 = await res2.text();
+                const $ = cheerio.load(html2);
+                const bodyTag2 = $('#page-content').first().html();
+                const markdown2 = turndownService.turndown(bodyTag2);
+                const itemEmbed = util.embed()
+                .setColor("GOLD")
+                .setTitle(combo)
+                .setURL(itemURL)
+                .setDescription(markdown2)
+                await msg.channel.send(itemEmbed);
+            } else {
+                const spellEmbed = util.embed()
+                .setColor("PURPLE")
+                .setTitle(combo)
+                .setURL(spellURL)
+                .setDescription(markdown)
+                await msg.channel.send(spellEmbed);
+            }
         }
 				
         } catch (e) {
