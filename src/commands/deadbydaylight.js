@@ -15,16 +15,19 @@ module.exports = {
 	console.log(Date() + " " + msg.member.user.id + " aka " + msg.member.user.tag + " is calling " + path.basename(__filename) + " with " + args.join(" "));
     const [cat, ...remaining] = args;
 	const name = remaining.join(" ");
-    if (!cat) return msg.channel.send(util.embed().setDescription("❌ | Missing args (category, name)."));
-	if (!name) return msg.channel.send(util.embed().setDescription("❌ | Missing args (category, name)."));
+    const name2 = remaining.join("_");
+    if (!cat) return msg.channel.send(util.embed().setDescription("❌ | Missing args (category, name). Example: sneeps!dbd killers Ghost Face"));
+	if (!name) return msg.channel.send(util.embed().setDescription("❌ | Missing args (category, name). Example: sneeps!dbd killers Ghost Face"));
         try {
             const res = await getDeets(cat, name);
             const results = util.chunk(res[0]['overview'], 1024);
 
             const embed = util.embed()
                 .setTitle(name)
+                .setURL(`https://deadbydaylight.fandom.com/wiki/${encodeURIComponent(name2)}`)
                 .setDescription(results[0])
-		            .setFooter(`Page 1 of ${results.length}.`);
+                .setThumbnail(res[0]['icon']['preview_portrait'])
+		.setFooter(`Page 1 of ${results.length}.`);
 				
             const myMsg = await msg.channel.send(embed);				
             if (results.length > 1) await util.pagination(myMsg, msg.author, results);
